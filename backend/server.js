@@ -6,7 +6,7 @@ const app = express()
 dotenv.config()
 
 app.get('/', (req, res) => {
-    res.send("API is running...")
+    res.send("API server is running...")
 })
 
 app.get('/api/notes', (req, res) => {
