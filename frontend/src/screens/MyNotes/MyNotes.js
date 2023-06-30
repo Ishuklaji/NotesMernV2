@@ -1,15 +1,25 @@
+import React ,{ useEffect } from "react" 
 import MainScreen from "../../components/MainScreen"
 import { Link } from "react-router-dom"
 import {
     Button, Card, Badge, Accordion
 } from "react-bootstrap";
 import notes from "../../data/notes"
+import axios from "axios"
 const MyNotes = () => {
     const deleteHandler = (id) => {
         if (window.confirm("Are you sure ?")) {
 
         }
     }
+
+    const fetchNotes = async () => {
+        const data = await axios.get('http://localhost:5000/api/notes')
+    }
+
+    useEffect(()=>{
+fetchNotes()
+    })
     return (
         <MainScreen title='Welcome '>
             <Link to='createnote'>
@@ -19,49 +29,53 @@ const MyNotes = () => {
             </Link>
             {
                 notes.map(note => (
-                    <Accordion>
-                        <Card style={{ margin: 10 }}>
-                            <Card.Header style={{ display: 'flex' }}>
-                                <span
-                                    style={{
-                                        color: "black",
-                                        textDecoration: "none",
-                                        flex: 1,
-                                        cursor: "pointer",
-                                        alignSelf: "center",
-                                        fontSize: 18
-                                    }}>
-                                    <Accordion.Toggle
-                                        as={Card.Text}
-                                        variant="link"
-                                        eventKey="0"
+                    <Accordion defaultActiveKey={["0"]}>
+                        <Accordion.Item eventkey="0">
+                            <Card style={{ margin: 10 }}>
+                                <Card.Header style={{ display: "flex" }}>
+                                    <span
+                                        style={{
+                                            color: "black",
+                                            textDecoration: "none",
+                                            flex: 1,
+                                            cursor: "pointer",
+                                            alignSelf: "center",
+                                            fontSize: 18,
+                                        }}
                                     >
-                                        {note.title}
-                                    </Accordion.Toggle>
-                                </span>
-                                <div>
-                                    <Button href={`/note/${note._id}`}>Edit</Button>
-                                    <Button variant='danger' className='mx-2' onClick={() => deleteHandler(note._id)}>Delete</Button>
-                                </div>
-                            </Card.Header>
-                            <Accordion.Collapse eventKey="0">
-                                <Card.Body>
-                                    <h4>
-                                        <Badge variant="success">
-                                            Category - {note.category}
-                                        </Badge>
-                                    </h4>
-                                    <blockquote className="blockquote mb-0">
-                                        <p>
-                                            {note.content}
-                                        </p>
-                                        <footer className="blockquote-footer">
-                                            Created On - date
-                                        </footer>
-                                    </blockquote>
-                                </Card.Body>
-                            </Accordion.Collapse>
-                        </Card>
+                                        <Accordion.Button as={Card.Text} variant="link">
+                                            {note.title}
+                                        </Accordion.Button>
+                                    </span>
+                                    <div>
+                                        <Button href={`/note/${note.id}`}>Edit</Button>
+                                        <Button
+                                            variant="danger"
+                                            className="mx-2"
+                                            onClick={deleteHandler}
+                                        >
+                                            Delete
+                                        </Button>
+                                    </div>
+                                </Card.Header>
+                                <Accordion.Collapse>
+                                    <Card.Body>
+                                        <h4>
+                                            <Badge bg="success" text="light">
+                                                Category - {note.category}{" "}
+                                            </Badge>
+                                        </h4>
+
+                                        <blockquote className="blockquote mb-0">
+                                            <p>{note.content}</p>
+                                            <footer className="blockquote-footer">
+                                                Creater on - date
+                                            </footer>
+                                        </blockquote>
+                                    </Card.Body>
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion.Item>
                     </Accordion>
                 ))
             }
