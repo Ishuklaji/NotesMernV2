@@ -52,6 +52,4 @@ You can register a new account or login with an existing one.
 
 ## Team
 
-[![Ish Bandhu Shukla](https://avatars1.githubusercontent.com/u/51760520?v=3&s=144)](https://github.com/ishuklaji)
-
 MIT © [Ish bandhu Shukla ](https://github.com/Ishuklaji)
