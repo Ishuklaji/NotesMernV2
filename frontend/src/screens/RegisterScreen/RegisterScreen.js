@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { register } from "../../actions/userActions";
 import MainScreen from "../../components/MainScreen";
 import "./RegisterScreen.css";
 
-function RegisterScreen({ history }) {
+function RegisterScreen() {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [pic, setPic] = useState(
@@ -20,9 +20,10 @@ function RegisterScreen({ history }) {
     const [picMessage, setPicMessage] = useState(null);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const userRegister = useSelector((state) => state.userRegister);
-    const { loading, error, userInfo } = userRegister;
+    const { loading, error, userInfo } = userRegister || {};
 
     const postDetails = (pics) => {
         if (
@@ -55,18 +56,19 @@ function RegisterScreen({ history }) {
 
     useEffect(() => {
         if (userInfo) {
-            history.push("/");
+            navigate("/");
         }
-    }, [history, userInfo]);
+    }, [navigate, userInfo]);
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
         if (password !== confirmpassword) {
             setMessage("Passwords do not match");
         }
-        else
+        else {
             dispatch(register(name, email, password, pic));
+        }
     };
 
     return (

@@ -1,7 +1,4 @@
-import {
-    Container,
-    Row, Col
-} from "react-bootstrap";
+import { Container, Row} from "react-bootstrap";
 import "./MainScreen.css"
 
 const MainScreen = ({ title, children }) => {

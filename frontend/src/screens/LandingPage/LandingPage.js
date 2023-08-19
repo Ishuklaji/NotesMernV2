@@ -1,6 +1,6 @@
 import {
     Container,
-    Row, Col, Button
+    Row, Button
 } from "react-bootstrap";
 import "./LandingPage.css"
 

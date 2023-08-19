@@ -10,6 +10,7 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ 
 @import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap);
 :root {
   --blue: #158cba;
@@ -3532,8 +3533,6 @@ input[type="submit"].btn-block {
   display: block;
   min-height: 1.3125rem;
   padding-left: 1.5rem;
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
 }
 .custom-control-inline {
   display: -ms-inline-flexbox;
