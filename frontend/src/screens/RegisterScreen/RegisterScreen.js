@@ -123,11 +123,11 @@ function RegisterScreen() {
                     )}
                     <Form.Group controlId="pic">
                         <Form.Label>Profile Picture</Form.Label>
-                        <Form.File
+                        <Form.Control
                             onChange={(e) => postDetails(e.target.files[0])}
                             id="custom-file"
-                            type="image/png"
-                            label="Upload Profile Picture"
+                            type="file"
+                            accept="image/*"
                             custom
                         />
                     </Form.Group>
