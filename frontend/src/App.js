@@ -1,22 +1,35 @@
-import './App.css';
-import Header from "./components/Header";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom"; 
 import Footer from "./components/Footer";
-import LandingPage from "./screens/LandingPage/LandingPage"
-import LoginScreen from "./screens/LoginScreen/LoginScreen"
-import RegisterScreen from "./screens/RegisterScreen/RegisterScreen"
-import { BrowserRouter, Routes, Route} from "react-router-dom"
-import MyNotes from "./screens/MyNotes/MyNotes"
+import Header from "./components/Header";
+import LandingPage from "./screens/LandingPage/LandingPage";
+import MyNotes from "./screens/MyNotes/MyNotes";
+import SingleNote from "./screens/SingleNote/SingleNote";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
+import CreateNote from "./screens/SingleNote/CreateNote";
+import { useState } from "react";
+// import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
+
 function App() {
+  const [search, setSearch] = useState("");
+
   return (
     <BrowserRouter>
-      <Header />
-      <main >
+      <Header setSearch={(s) => setSearch(s)} />
+      <main className="App">
         <Routes>
-          <Route path="/" element={<LandingPage />} exact/>
-          <Route path="/mynotes" element={<MyNotes />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
-        </Routes> 
+          <Route
+            path="/mynotes"
+            element={<MyNotes search={search} />}
+          />
+          <Route path="/note/:id" element={<SingleNote />} />
+          <Route path="/createnote" element={<CreateNote />} />
+          {/* <Route path="/profile" element={<ProfileScreen />} /> */}
+        </Routes>
       </main>
       <Footer />
     </BrowserRouter>
