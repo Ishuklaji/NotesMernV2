@@ -12,6 +12,7 @@ import {
     NOTES_UPDATE_REQUEST,
     NOTES_UPDATE_SUCCESS,
 } from "../constants/notesConstants";
+import { BASE_URL } from "../config/config"
 import axios from "axios";
 
 export const listNotes = () => async (dispatch, getState) => {
@@ -30,7 +31,7 @@ export const listNotes = () => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.get(`/api/notes`, config);
+        const { data } = await axios.get(BASE_URL + `/api/notes`, config);
 
         dispatch({
             type: NOTES_LIST_SUCCESS,
@@ -68,7 +69,7 @@ export const createNoteAction = (title, content, category) => async (
             },
         };
 
-        const { data } = await axios.post(
+        const { data } = await axios.post(BASE_URL +
             `/api/notes/create`,
             { title, content, category },
             config
@@ -106,7 +107,7 @@ export const deleteNoteAction = (id) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.delete(`/api/notes/${id}`, config);
+        const { data } = await axios.delete(BASE_URL + `/api/notes/${id}`, config);
 
         dispatch({
             type: NOTES_DELETE_SUCCESS,
@@ -144,7 +145,7 @@ export const updateNoteAction = (id, title, content, category) => async (
             },
         };
 
-        const { data } = await axios.put(
+        const { data } = await axios.put(BASE_URL +
             `/api/notes/${id}`,
             { title, content, category },
             config

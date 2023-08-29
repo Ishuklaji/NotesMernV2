@@ -1,5 +1,5 @@
 const express = require('express')
-// const notes = require('./data/notes')
+const cors = require('cors');
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 const userRoutes = require('./routes/userRoutes')
@@ -10,14 +10,11 @@ const app = express()
 dotenv.config()
 connectDB()
 app.use(express.json())
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send("API server is running...")
 })
-
-// app.get('/api/notes', (req, res) => {
-//     res.json(notes)
-// })
 
 app.use('/api/users',userRoutes)
 app.use('/api/notes',noteRoutes)
