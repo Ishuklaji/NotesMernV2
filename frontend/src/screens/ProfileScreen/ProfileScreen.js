@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../../actions/userActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
-import { useParams, useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 const ProfileScreen = () => {
     const [name, setName] = useState("");
@@ -17,9 +17,7 @@ const ProfileScreen = () => {
     const [picMessage, setPicMessage] = useState();
 
     const dispatch = useDispatch();
-    const navigate = useNavigate(); 
-
-    const { id } = useParams(); 
+    const navigate = useNavigate();
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;

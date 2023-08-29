@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteNoteAction, updateNoteAction } from "../../actions/notesActions";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
+import {BASE_URL} from "../../config/config"
 import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -35,14 +36,15 @@ function SingleNote() {
     const updateHandler = (e) => {
         e.preventDefault();
         dispatch(updateNoteAction(id, title, content, category));
-        if (!title || !content || !category) return;
+        if (!title || !content || !category) 
+        return;
 
         navigate("/mynotes");
     };
 
     useEffect(() => {
         const fetching = async () => {
-            const { data } = await axios.get(`/api/notes/${id}`);
+            const { data } = await axios.get(BASE_URL + `/api/notes/${id}`);
 
             setTitle(data.title);
             setContent(data.content);
@@ -53,11 +55,11 @@ function SingleNote() {
         fetching();
     }, [id, date]);
 
-    const resetHandler = () => {
-        setTitle("");
-        setCategory("");
-        setContent("");
-    };
+    // const resetHandler = () => {
+    //     setTitle("");
+    //     setCategory("");
+    //     setContent("");
+    // };
 
     return (
         <MainScreen title="Edit Note">
