@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Accordion, Badge, Button, Card } from "react-bootstrap";
+import { Accordion, Badge, Button, Card, useAccordionButton } from "react-bootstrap";
 import MainScreen from "../../components/MainScreen";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
@@ -7,6 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteNoteAction, listNotes } from "../../actions/notesActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+
+function CustomToggle({ children, eventKey }) {
+    const decoratedOnClick = useAccordionButton(eventKey, () =>
+        console.log('totally custom!'),
+    );
+
+    return (
+        <span
+            onClick={decoratedOnClick}
+        >
+            {children}
+        </span>
+    );
+}
 
 function MyNotes({ search }) {
     const dispatch = useDispatch();
@@ -52,7 +66,7 @@ function MyNotes({ search }) {
     };
 
     return (
-        <MainScreen title={`Welcome Back ${userInfo && userInfo.name}..`}>
+        <MainScreen title={`Welcome Back ${userInfo && userInfo.name}...`}>
             {console.log(notes)}
             <Link to="/createnote">
                 <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
@@ -72,7 +86,7 @@ function MyNotes({ search }) {
                     )
                     .reverse()
                     .map((note) => (
-                        <Accordion key={note._id}>
+                        <Accordion defaultActiveKey={note._id}>
                             <Card style={{ margin: 10 }}>
                                 <Card.Header style={{ display: "flex" }}>
                                     <span
@@ -85,13 +99,7 @@ function MyNotes({ search }) {
                                             fontSize: 18,
                                         }}
                                     >
-                                        <Accordion.Toggle
-                                            as={Card.Text}
-                                            variant="link"
-                                            eventKey="0"
-                                        >
-                                            {note.title}
-                                        </Accordion.Toggle>
+                                        <CustomToggle eventKey="0">{note.title}</CustomToggle>
                                     </span>
 
                                     <div>
