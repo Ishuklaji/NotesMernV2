@@ -70,7 +70,7 @@ function MyNotes({ search }) {
             {console.log(notes)}
             <Link to="/createnote">
                 <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
-                    Create new Note
+                    Create a new Note
                 </Button>
             </Link>
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
