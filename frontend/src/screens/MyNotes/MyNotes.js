@@ -14,9 +14,7 @@ function CustomToggle({ children, eventKey }) {
     );
 
     return (
-        <span
-            onClick={decoratedOnClick}
-        >
+        <span onClick={decoratedOnClick} >
             {children}
         </span>
     );

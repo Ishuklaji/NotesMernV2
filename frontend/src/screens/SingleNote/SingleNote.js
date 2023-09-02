@@ -55,12 +55,6 @@ function SingleNote() {
         fetching();
     }, [id, date]);
 
-    // const resetHandler = () => {
-    //     setTitle("");
-    //     setCategory("");
-    //     setContent("");
-    // };
-
     return (
         <MainScreen title="Edit Note">
             <Card>
