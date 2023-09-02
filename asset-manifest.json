@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/NotesMernV2/static/css/main.406aca03.css",
+    "main.js": "/NotesMernV2/static/js/main.532f2646.js",
+    "static/media/background1.jpg": "/NotesMernV2/static/media/background1.8369ba1180e5ebcb1893.jpg",
+    "index.html": "/NotesMernV2/index.html",
+    "main.406aca03.css.map": "/NotesMernV2/static/css/main.406aca03.css.map",
+    "main.532f2646.js.map": "/NotesMernV2/static/js/main.532f2646.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.406aca03.css",
+    "static/js/main.532f2646.js"
+  ]
+}
