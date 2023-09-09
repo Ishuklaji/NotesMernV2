@@ -52,4 +52,4 @@ You can register a new account or login with an existing one.
 
 ## Team
 
-MIT © [Ish bandhu Shukla ](https://github.com/Ishuklaji)
+Designed & Developed © [Ish bandhu Shukla ](https://github.com/Ishuklaji)
